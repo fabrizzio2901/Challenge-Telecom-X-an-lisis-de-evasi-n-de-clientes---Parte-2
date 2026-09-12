@@ -1,71 +1,49 @@
-# Challenge-Telecom-X-an-lisis-de-evasi-n-de-clientes---Parte-2
+# Telecom X — modelado de cancelación de clientes, parte 2
 
-# Telecom X - Fase 2: Predicción de Cancelación de Clientes 
+[English](README.en.md) · [Notebook](Challenge_Telecom_X_an%C3%A1lisis_de_evasi%C3%B3n_de_clientes_Parte_2.ipynb)
 
-## 1. Propósito del Proyecto
-El objetivo principal de este análisis es desarrollar un modelo de Machine Learning capaz de predecir la probabilidad de que un cliente cancele sus servicios (**Churn**) en la empresa Telecom X. 
+Ejercicio de clasificación asociado al desafío Telecom X. Contiene preparación de variables, sobremuestreo con SMOTE y entrenamiento de regresión logística y Random Forest.
 
-Mediante el análisis de variables demográficas, servicios contratados y métricas financieras, buscamos identificar patrones de comportamiento que permitan a la empresa pasar de una postura reactiva a una estrategia de retención preventiva, optimizando así sus recursos y aumentando la lealtad del cliente.
+**Estado: reproducción pendiente.** El repositorio actual no permite ejecutar todo el flujo desde una sesión limpia. Las métricas escritas en el notebook no se presentan aquí como resultados verificados.
 
----
+## Código incluido
 
-## 2. Estructura del Proyecto
-El proyecto está organizado de la siguiente manera:
+- Lectura de `datos_tratados.csv`.
+- Codificación con `pandas.get_dummies`.
+- División 70/30 con `random_state=42`.
+- SMOTE sobre el conjunto de entrenamiento.
+- Escalado y entrenamiento de los dos clasificadores.
+- Código de evaluación e importancia de variables.
 
-* `TelecomX_Predictivo.ipynb`: Cuaderno principal (Google Colab) con todo el flujo de datos y modelado.
-* `datos_tratados.csv`: Conjunto de datos limpio y procesado derivado de la Fase 1.
-* `visualizaciones/`: Carpeta que contiene los gráficos generados (Matriz de confusión, importancia de variables, etc.).
-* `README.md`: Descripción general del proyecto.
+## Qué falta para ejecutarlo
 
----
+1. Proporcionar `datos_tratados.csv` con procedencia y transformación documentadas. No está versionado y el notebook de la parte 1 no incluye su exportación.
+2. Corregir referencias a `df`: el cuaderno carga inicialmente `df_telecom`.
+3. Importar `accuracy_score` y `confusion_matrix`, utilizados en la evaluación.
+4. Unificar el flujo de partición y preprocesamiento, que se redefine en varias celdas.
+5. Revisar `astype(int)`, que también convierte variables continuas y puede perder sus decimales.
+6. Ejecutar todo desde cero y guardar resultados trazables antes de citar exactitud, recall o sobreajuste.
 
-## 3. Preparación y Modelado de Datos
+Estas son observaciones de código; esta actualización de documentación no modifica el notebook.
 
-### Clasificación de Variables
-Se identificaron y separaron las variables para su tratamiento específico:
-* **Numéricas:** `tenure` (antigüedad), `Charges.Monthly`, `Charges.Total`, entre otras.
-* **Categóricas:** `InternetService`, `Contract`, `PaymentMethod`, etc.
+## Preparar el entorno
 
-### Preprocesamiento
-1.  **Codificación:** Se utilizó *One-Hot Encoding* (`get_dummies`) para transformar las variables categóricas en binarias, permitiendo su procesamiento matemático.
-2.  **Normalización:** Se aplicó `StandardScaler` a los modelos sensibles a la escala (como Regresión Logística), asegurando que variables con rangos grandes (ej. Gasto Total) no dominaran injustamente la predicción.
-3.  **Balanceo de Clases:** Debido al desequilibrio en los datos (pocos casos de Churn), se utilizó la técnica de sobremuestreo para equilibrar las clases y mejorar la detección de desertores.
-
-### Entrenamiento y Prueba
-Los datos se dividieron en:
-* **70% Entrenamiento:** Para que los modelos aprendan los patrones.
-* **30% Prueba:** Para evaluar el desempeño final con datos que el modelo nunca ha visto.
-
----
-
-## 4. Análisis Exploratorio de Datos (EDA) e Insights
-
-Durante el análisis exploratorio se obtuvieron hallazgos críticos que guiaron el modelado:
-
-* **Antigüedad (Tenure):** Existe una fuerte correlación negativa con la cancelación; los clientes en su primer año de servicio presentan el riesgo más alto.
-* **Contratos:** Los usuarios con contratos "Mes a Mes" tienen una tasa de fuga significativamente superior a quienes poseen contratos anuales o bianuales.
-* **Servicios:** Los clientes con Fibra Óptica presentan una tendencia inusual a la cancelación, lo que sugiere áreas de oportunidad en la calidad o costo de dicho servicio.
-
-
-
----
-
-## 5. Modelización y Resultados
-Se compararon dos modelos principales:
-
-1.  **Regresión Logística:** Seleccionada como el modelo más robusto debido a su alto **Recall (80%)**, permitiendo identificar a la gran mayoría de los clientes en riesgo.
-2.  **Random Forest:** Mostró una buena precisión general, pero presentó signos de *overfitting*, memorizando los datos de entrenamiento sin generalizar eficientemente.
-
-### Factores Determinantes
-El análisis de importancia de variables reveló que los **Cargos Mensuales**, el **Tipo de Contrato** y la **Antigüedad** son los tres pilares que definen la permanencia de un cliente en Telecom X.
-
-
-
----
-
-## 6. Instrucciones de Ejecución
-
-### Requisitos Previos
-Es necesario tener instalado Python 3.x y las siguientes bibliotecas:
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn
+git clone https://github.com/fabrizzio2901/Challenge-Telecom-X-an-lisis-de-evasi-n-de-clientes---Parte-2.git
+cd Challenge-Telecom-X-an-lisis-de-evasi-n-de-clientes---Parte-2
+python -m venv .venv
+```
+
+Activa `.venv` con `.\.venv\Scripts\Activate.ps1` en PowerShell o `source .venv/bin/activate` en macOS/Linux. Después:
+
+```bash
+python -m pip install pandas numpy matplotlib seaborn scikit-learn imbalanced-learn jupyterlab
+python -m jupyterlab
+```
+
+Abre el notebook enlazado al inicio. Estos comandos preparan un entorno; no resuelven los bloqueos descritos ni constituyen una ejecución validada. No hay versiones fijadas.
+
+## Créditos y alcance
+
+Ejercicio del desafío Telecom X de Alura. No es un modelo desplegado ni evidencia de reducción real de cancelaciones. La relación con [la parte exploratoria](https://github.com/fabrizzio2901/TelecomX-Datos) debe completarse mediante una exportación reproducible del conjunto de entrada.
+
