@@ -47,3 +47,6 @@ Open the notebook linked above. These commands prepare an environment; they do n
 
 An Alura Telecom X challenge exercise. It is not a deployed model or evidence of a real reduction in churn. The connection to [the exploratory analysis](https://github.com/fabrizzio2901/TelecomX-Datos) needs a reproducible export of its input dataset.
 
+## My contribution
+
+I contributed to implementing this modeling exercise as part of my technical learning. It complements my full-stack development portfolio and retains the reproducibility issues described above.

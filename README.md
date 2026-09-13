@@ -47,3 +47,6 @@ Abre el notebook enlazado al inicio. Estos comandos preparan un entorno; no resu
 
 Ejercicio del desafío Telecom X de Alura. No es un modelo desplegado ni evidencia de reducción real de cancelaciones. La relación con [la parte exploratoria](https://github.com/fabrizzio2901/TelecomX-Datos) debe completarse mediante una exportación reproducible del conjunto de entrada.
 
+## Mi participación
+
+Participé en la implementación de este ejercicio de modelado como parte de mi aprendizaje técnico. Complementa mi portafolio de desarrollo full stack y conserva los pendientes de reproducción descritos.
